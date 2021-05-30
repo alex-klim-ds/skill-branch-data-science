@@ -28,3 +28,36 @@ def gradient(x1, x2):
     return ([d_dx1(x1, x2), d_dx2(x1, x2)])
 
 print('2: Градиент функции:' +' '+ str(gradient(10, 1)))
+
+"""3: найти точку минимума для функции
+$\cos(x) + 0.05x^3 + \log_2{x^2}$.
+Зафиксировать параметр $\epsilon = 0.001$,
+начальное значение принять равным 10."""
+print('3:')
+def function_1(x):
+    return np.cos(x) + 0.05 * (x)**3 + np.log2(x**2)
+x = np.arange(-2.0, 10.0, 0.01)
+y = function_1(x)
+plt.plot(x, y,'b')
+step = 0.1 # шаг спуска
+xn = 10
+yn = function_1(xn)
+Y = {xn: yn}
+for _ in range(50): # 50 максимальное число итераций по условию
+    xn = xn - step*misc.derivative(function_1, xn)
+    yn = function_1(xn)
+    Y[xn] = yn
+    # выводим результат каждой итерации
+    print("x=", format(xn, ".2f"), "; " "y=", format(yn, ".2f"))
+plt.title("Gradient optimization one dim")
+plt.plot(list(Y.keys()), list(Y.values()), 'ro')
+plt.show()
+
+X = {}
+for i in range(len(Y)):
+    X[list(Y.values())[i]] = list(Y.keys())[i]
+plt.plot(list(Y.keys()), list(Y.values()))
+
+# выводим пару искомых минимальных X и Y (близких к минимумам)
+print ('мин. функции в т. Х =', min(X.items())[1])
+print ('мин. функции в т. Y =', min(X.items())[0])
