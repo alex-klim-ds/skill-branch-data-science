@@ -1,15 +1,10 @@
 import numpy as np
-from scipy import misc
-import matplotlib.pyplot as plt
-def function_1(x):
-    return round(np.cos(x) + 0.05 * x**3 + \
-        np.log2(x**2), 2)
-def function_2(x1, x2):
-    return round(x1**2 * np.cos(x2) + 0.05 * x2**3 + \
-           3 * x1**3 * np.log2(x2**2), 2)
 
 """1: посчитать значение производной функции
 #$\cos(x) + 0.05x^3 + \log_2{x^2}$ в точке $x = 10$."""
+def function_1(x):
+    return round(np.cos(x) + 0.05 * x**3 + \
+        np.log2(x**2), 2)
 def derivation(x):#производная от function_1(x)
     return - np.sin(x) + 0.15 * x**2 + \
            (2 / (x * np.log(2)))
@@ -17,6 +12,9 @@ print('1: Значение производной' +' '+ str(round(derivation(10
 
 """2: посчитать значение градиента функции
 $x_1^2\cos(x_2) + 0.05x_2^3 + 3x_1^3"""
+def function_2(x1, x2):
+    return round(x1**2 * np.cos(x2) + 0.05 * x2**3 + \
+           3 * x1**3 * np.log2(x2**2), 2)
 def d_dx1(x1, x2):#частная производная по x1
     return round(9*x1**2 * np.log2(x2**2) + \
                  2 * x1 * np.cos(x2), 2)
